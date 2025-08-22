@@ -32,6 +32,6 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         ftp-server: ftp.fujiairecambodia.com
-        ftp-username: wwwfujiairecambo@demo.fujiairecambodia.com
+        ftp-username: deploy@demo.fujiairecambodia.com
         ftp-password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./build/
