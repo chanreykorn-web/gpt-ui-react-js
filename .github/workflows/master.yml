@@ -1,37 +1,41 @@
-name: Master CI/CD
-
+name: 🚀 Shipping Build
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-
+    branches:
+      - [YOUR_BRANCH_NAME_THAT_YOU_WANT_TO_PUBLISH]
 jobs:
-  build:
+  FTP-Deploy-Action:
+    name: 🎉 Deploy
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16.x'
-        cache: 'npm'
-    
-    - name: Install Dependencies
-      run: npm ci
-      
-    - name: Build
-      run: npm run build
-      
-    - name: Test
-      run: npm test
-
-    - name: Deploy to cPanel
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-      with:
-        ftp-server: ftp.fujiairecambodia.com
-        ftp-username: deploy@demo.fujiairecambodia.com
-        ftp-password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: ./build/
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+      - name: Use Node.js 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - name: Cache npm dependencies
+        uses: actions/cache@v3
+        id: cache-node-modules
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      - name: 🔨 Install Dependencies
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        run: |
+          npm install
+        env:
+         NODE_OPTIONS: "--max_old_space_size=4096"
+         CI: false
+      - name: 🏗 Build Project
+        run: npm run build
+      - name: 📂 Sync folders and files to the server
+        uses: SamKirkland/FTP-Deploy-Action@4.3.3
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: build/
