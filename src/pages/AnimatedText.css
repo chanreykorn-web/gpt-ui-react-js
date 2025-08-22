@@ -1,0 +1,22 @@
+@keyframes slideAcrossRightToLeft {
+    0% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    20% {
+      opacity: 1;
+    }
+    80% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+  }
+  
+  .slide-through {
+    display: inline-block;
+    animation: slideAcrossRightToLeft 8s linear infinite;
+  }
+  

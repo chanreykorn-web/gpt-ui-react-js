@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@theme {
+    --color-fujiaire: #294785;
+    --color-fujiaire-text: #009cc9;
+    --color-bg-fujiare: #b0e1ef
+}
+
+
+
+.a-left {
+    opacity: 0;
+    filter: blue(5px);
+    transform: translateX(-100%);
+    transition: all 1s;
+}
+
+.a-right {
+    opacity: 0;
+    filter: blue(5px);
+    transform: translateX(100%);
+    transition: all 1s;
+}
+
+.a-up {
+    opacity: 0;
+    filter: blue(5px);
+    transform: translateY(20px);
+    transition: all 1s;
+}
+
+.a-down {
+    opacity: 0;
+    filter: blue(5px);
+    transform: translateY(-100%);
+    transition: all 1s;
+}
+
+.show {
+    opacity: 100%;
+    filter: blur(0);
+    transform: translateX(0) translateY(0);
+}
+
+.container {
+    width: 1024px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    /* border: 1px solid red; */
+}
