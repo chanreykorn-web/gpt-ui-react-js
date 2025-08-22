@@ -1,0 +1,11 @@
+﻿{
+  "agentId": 21,
+  "agentName": "THIN11UC",
+  "poolId": 1,
+  "poolName": "Default",
+  "serverUrl": "https://pipelinesghubeus26.actions.githubusercontent.com/eC4l7p1tf5yFFQ7jAskQ90wffbjWwWItYxqBLw5MXrP7BHL8ix/",
+  "gitHubUrl": "https://github.com/chanreykorn-web/gpt-ui-react-js",
+  "workFolder": "_work",
+  "useV2Flow": true,
+  "serverUrlV2": "https://broker.actions.githubusercontent.com/"
+}
